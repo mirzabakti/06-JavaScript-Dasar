@@ -167,6 +167,54 @@
       
       // EDIT HERE
 
+    //Untuk membuat comment form section muncul saat button "write a comment" ditekan
+    elBtnComment.addEventListener("click", event => {
+      console.log("clicked")
+      elBtnComment.classList.add("d-none")
+      elCommentSection.removeAttribute("class", "d-none")
+    })
+
+    //untuk memembuat comment form section menghilang serta isi form juga ter-reset saat button cancel ditekan
+    elBtnCancel.addEventListener("click", event => {
+      elCommentForm.reset()
+      elBtnComment.classList.remove("d-none")
+      elCommentSection.setAttribute("class", "d-none")
+    })
+
+    //aksi memproses form yang telah disubmit untuk ditampilkan di comment list
+    elCommentForm.addEventListener("submit", event => {
+      event.preventDefault()
+
+      //mengambil value dari form 
+      const inputUsername = elInputUsername.value
+      const inputComment = elInputComment.value
+
+      //membuat element div dan set attribute class dan kemudian diisi value dari input username
+      const divUser = document.createElement("div");
+      const divUserClass = divUser.setAttribute("class", "fw-bold text-capitalize")
+      divUser.innerHTML = inputUsername
+
+      //membuat element div dan set attribute class dan kemudian diisi value dari input comment dan prepend element div username ke dalam
+      const divComment = document.createElement("div");
+      const divCommentClass = divComment.setAttribute("class", "ms-2 me-auto")
+      divComment.innerHTML = inputComment
+      divComment.prepend(divUser)
+
+      //membuat element li dan set attribute 
+      const newLi = document.createElement("li")
+      const newLiAtt = newLi.setAttribute("class", "list-group-item d-flex justify-content-between  align-items-start")
+
+      
+      newLi.append(divComment) //append element yang berisi username dan comment ke dalam element li
+      elCommentList.prepend(newLi) //prepend listgroup username dan comment sebelumnya di append ke li agar berada di posisi teratas tampilan
+
+      //untuk menghide form saat setelah melakukan submit dan juga me-reset isi form
+      elCommentForm.reset()
+      elBtnComment.classList.remove("class","d-none")
+      elCommentSection.setAttribute("class", "d-none")
+
+    })
+
     </script>
   </body>
 </html>

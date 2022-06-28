@@ -124,4 +124,18 @@ console.log(convToUpperCase("bogor kota indah, sejuk, nyaman. \nbagai bunga di d
 /// (String) huruf yang pertama kali tidak ada kembarannya
 
 /// EDIT HERE
-// function firstNonRepeatedChar(....) { .... }
+function firstNonRepeatedChar(word) {
+    if (word.indexOf(' ') >= 0) {
+        return `word = "${word}" \nHuruf pertama yang tidak kembar adalah "Kata Tidak Boleh Dipisah"`
+    }else{
+    for (let i = 0; i < word.length; i++) {
+        let letter = word.charAt(i);
+        if (word.indexOf(letter) == i && word.indexOf(letter, i + 1) == -1) {
+            return `word = "${word}" \nHuruf pertama yang tidak kembar adalah "${letter}"`
+        }
+    }
+    return `word = "${word}" \nHuruf pertama yang tidak kembar adalah ""`;
+}
+}
+
+console.log(firstNonRepeatedChar("mmirzabaktirz"));

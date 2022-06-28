@@ -172,6 +172,32 @@
     <!-- JavaScript -->
     <script>
       /// EDIT HERE
+
+    const card = document.getElementsByClassName("card") //mengambil setiap element yang memiliki class name card
+
+//for digunakan untuk menganmbil index card atau card mana yg kita pilih(tekan)
+for (let i = 0; i < card.length; i++) {
+  //aksi saat card ditekan
+  card[i].addEventListener("click", event => {
+    console.log("clicked")
+
+    //ambil element class yang memiliki title, text, dan image
+    const cardTitle = document.getElementsByClassName("card-title")
+    const cardText = document.getElementsByClassName("card-text")
+    const img = document.getElementsByClassName("card-img-top")
+
+    //ambil element dan attribute yang nanti akan di tambahkan title,text dan image
+    const modalTitle = document.getElementById("modal-title")
+    const modalText = document.getElementById("modal-text")
+    const modalImg = document.getElementById("modal-image")
+    const imgLink = img[i].getAttribute("src")
+
+    //set isi modal berupa title, text, dan image yang didapat dari card
+    modalTitle.innerHTML = cardTitle[i].innerHTML
+    modalText.innerHTML = cardText[i].innerHTML
+    modalImg.setAttribute("src", imgLink)
+  })
+}
     </script>
 
     <!-- Bootstrap Bundle with Popper -->
